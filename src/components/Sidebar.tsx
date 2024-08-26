@@ -17,6 +17,8 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { SearchIcon } from "./ui/search-icon";
+import { Input } from "@nextui-org/react";
 
 export function SidebarDemo() {
     const links = [
@@ -105,6 +107,8 @@ export function SidebarDemo() {
 }
 
 const Dashboard = ({ activeLink, setActiveLink }) => {
+    const [searchQuery, setSearchQuery] = useState("");
+
     const dashboardCards = [
         { title: "Dashboard Card 1", link: "https://dashboard-card-1.com" },
         { title: "Dashboard Card 2", link: "https://dashboard-card-2.com" },
@@ -160,12 +164,35 @@ const Dashboard = ({ activeLink, setActiveLink }) => {
         },
     ];
 
+    const filteredCards = cardData.map((category) => {
+        return {
+            ...category,
+            cards: category.cards.filter((card) =>
+                card.title.toLowerCase().includes(searchQuery.toLowerCase())
+            ),
+        };
+    });
+
     return (
         <div className="flex flex-1 justify-center items-center">
             <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
-                <div>
+                <div className="flex-row flex">
+                    <Input
+                        classNames={{
+                            base: "max-w-full sm:max-w-[10rem] h-10",
+                            mainWrapper: "h-full",
+                            input: "text-small",
+                            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                        }}
+                        placeholder="Type to search..."
+                        size="sm"
+                        startContent={<SearchIcon size={18} />}
+                        type="search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                     <DropdownMenu>
-                        <DropdownMenuTrigger>Categories Dropdown</DropdownMenuTrigger>
+                        <DropdownMenuTrigger className="bg-blue-300 py-2 px-2 rounded-lg">Categories Dropdown</DropdownMenuTrigger>
                         <DropdownMenuContent>
                             <DropdownMenuItem onClick={() => setActiveLink("Dashboard")}>Dashboard</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => setActiveLink("Profile")}>Profile</DropdownMenuItem>
@@ -174,7 +201,7 @@ const Dashboard = ({ activeLink, setActiveLink }) => {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
-                {cardData.map((category) => (
+                {filteredCards.map((category) => (
                     activeLink === category.category && (
                         <div className="flex flex-wrap md:flex-row flex-col items-center justify-center gap-16" key={category.category}>
                             {category.cards.map((card, i) => (
