@@ -7,7 +7,7 @@ import HeroPage from "@/pages/HeroPage";
 export default function Home() {
   return (
     <>
-      <div className="dark:bg-slate-950 bg-slate-200 h-screen w-screen">
+      <div className="dark:bg-slate-950 bg-slate-200 h-full w-screen">
       <HeroPage/>
       </div>
     </>
