@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sidebar-menu"
+import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sidebar-menu";
 import {
     IconArrowLeft,
     IconBrandTabler,
@@ -9,7 +9,8 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-
+import { Progress } from "@/components/ui/progress";
+import {Card, CardFooter, Button} from "@nextui-org/react";
 export function SidebarDemo() {
     const links = [
         {
@@ -41,7 +42,14 @@ export function SidebarDemo() {
             ),
         },
     ];
+
+    const [activeLink, setActiveLink] = useState("Dashboard");
     const [open, setOpen] = useState(false);
+
+    const handleLinkClick = (label) => {
+        setActiveLink(label);
+    };
+
     return (
         <div
             className={cn(
@@ -52,12 +60,18 @@ export function SidebarDemo() {
             <Sidebar open={open} setOpen={setOpen}>
                 <SidebarBody className="justify-between gap-10">
                     <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
                         <div className="mt-8 flex flex-col gap-2">
                             {links.map((link, idx) => (
-                                <SidebarLink key={idx} link={link} />
+                                <SidebarLink
+                                    key={idx}
+                                    link={link}
+                                    onClick={() => handleLinkClick(link.label)}
+                                />
                             ))}
                         </div>
+                    </div>
+                    <div>
+                        <Progress value={33} />
                     </div>
                     <div>
                         <SidebarLink
@@ -78,31 +92,97 @@ export function SidebarDemo() {
                     </div>
                 </SidebarBody>
             </Sidebar>
-            <Dashboard />
+            <Dashboard activeLink={activeLink} />
         </div>
     );
 }
+const Dashboard = ({ activeLink }: { activeLink: string }) => {
+    const dashboardCards = [
+        { title: "Dashboard Card 1", link: "https://dashboard-card-1.com" },
+        { title: "Dashboard Card 2", link: "https://dashboard-card-2.com" },
+        { title: "Dashboard Card 3", link: "https://dashboard-card-3.com" },
+        { title: "Dashboard Card 4", link: "https://dashboard-card-4.com" },
+        { title: "Dashboard Card 5", link: "https://dashboard-card-5.com" },
+        { title: "Dashboard Card 6", link: "https://dashboard-card-6.com" },
+    ];
 
-const Dashboard = () => {
+    const profileCards = [
+        { title: "Profile Card 1", link: "https://profile-card-1.com" },
+        { title: "Profile Card 2", link: "https://profile-card-2.com" },
+        { title: "Profile Card 3", link: "https://profile-card-3.com" },
+        { title: "Profile Card 4", link: "https://profile-card-4.com" },
+        { title: "Profile Card 5", link: "https://profile-card-5.com" },
+        { title: "Profile Card 6", link: "https://profile-card-6.com" },
+    ];
+
+    const settingsCards = [
+        { title: "Settings Card 1", link: "https://settings-card-1.com" },
+        { title: "Settings Card 2", link: "https://settings-card-2.com" },
+        { title: "Settings Card 3", link: "https://settings-card-3.com" },
+        { title: "Settings Card 4", link: "https://settings-card-4.com" },
+        { title: "Settings Card 5", link: "https://settings-card-5.com" },
+        { title: "Settings Card 6", link: "https://settings-card-6.com" },
+    ];
+
+    const logoutCards = [
+        { title: "Logout Card 1", link: "https://logout-card-1.com" },
+        { title: "Logout Card 2", link: "https://logout-card-2.com" },
+        { title: "Logout Card 3", link: "https://logout-card-3.com" },
+        { title: "Logout Card 4", link: "https://logout-card-4.com" },
+        { title: "Logout Card 5", link: "https://logout-card-5.com" },
+        { title: "Logout Card 6", link: "https://logout-card-6.com" },
+    ];
+
+    const cardData = [
+        {
+            category: "Dashboard",
+            cards: dashboardCards,
+        },
+        {
+            category: "Profile",
+            cards: profileCards,
+        },
+        {
+            category: "Settings",
+            cards: settingsCards,
+        },
+        {
+            category: "Logout",
+            cards: logoutCards,
+        },
+    ];
+
     return (
         <div className="flex flex-1">
             <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
-                <div className="flex gap-2">
-                    {[...new Array(4)].map((i) => (
-                        <div
-                            key={"first-array" + i}
-                            className="h-20 w-full rounded-lg  bg-gray-100 dark:bg-neutral-800 animate-pulse"
-                        ></div>
-                    ))}
-                </div>
-                <div className="flex gap-2 flex-1">
-                    {[...new Array(2)].map((i) => (
-                        <div
-                            key={"second-array" + i}
-                            className="h-full w-full rounded-lg  bg-gray-100 dark:bg-neutral-800 animate-pulse"
-                        ></div>
-                    ))}
-                </div>
+                {cardData.map((category) => (
+                    activeLink === category.category && (
+                        <div className="flex gap-2" key={category.category}>
+                            {category.cards.map((card, i) => (
+                         <Card
+                         isFooterBlurred
+                         radius="lg"
+                         className="border-none"
+                       >
+                         <Image
+                           alt="Woman"
+                           className="object-cover"
+                           height={200}
+                           src="https://nextui.org/images/hero-card.jpeg"
+                           width={200}
+                         />
+                         <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+                           <p className="text-tiny text-white/80">{card.title}</p>
+                           <Button href="{card.link}" className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
+                             Notify me
+                           </Button>
+                         </CardFooter>
+                       </Card>
+                            ))}
+                        </div>
+                    )
+                ))}
+         
             </div>
         </div>
     );
