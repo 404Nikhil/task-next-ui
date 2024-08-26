@@ -23,28 +23,28 @@ import { Input } from "@nextui-org/react";
 export function SidebarDemo() {
     const links = [
         {
-            label: "Dashboard",
+            label: "Option 1",
             href: "#",
             icon: (
                 <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
             ),
         },
         {
-            label: "Profile",
+            label: "Option 2",
             href: "#",
             icon: (
                 <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
             ),
         },
         {
-            label: "Settings",
+            label: "Option 3",
             href: "#",
             icon: (
                 <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
             ),
         },
         {
-            label: "Logout",
+            label: "Option 4",
             href: "#",
             icon: (
                 <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
@@ -110,56 +110,56 @@ const Dashboard = ({ activeLink, setActiveLink }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const dashboardCards = [
-        { title: "Dashboard Card 1", link: "https://dashboard-card-1.com" },
-        { title: "Dashboard Card 2", link: "https://dashboard-card-2.com" },
-        { title: "Dashboard Card 3", link: "https://dashboard-card-3.com" },
-        { title: "Dashboard Card 4", link: "https://dashboard-card-4.com" },
-        { title: "Dashboard Card 5", link: "https://dashboard-card-5.com" },
-        { title: "Dashboard Card 6", link: "https://dashboard-card-6.com" },
+        { title: "Feature 1", link: "https://dashboard-card-1.com" },
+        { title: "Fr-2", link: "https://dashboard-card-2.com" },
+        { title: "Ft-3", link: "https://dashboard-card-3.com" },
+        { title: "Fe-4", link: "https://dashboard-card-4.com" },
+        { title: "Fa-5", link: "https://dashboard-card-5.com" },
+        { title: "F-6", link: "https://dashboard-card-6.com" },
     ];
 
     const profileCards = [
-        { title: "Profile Card 1", link: "https://profile-card-1.com" },
-        { title: "Profile Card 2", link: "https://profile-card-2.com" },
-        { title: "Profile Card 3", link: "https://profile-card-3.com" },
-        { title: "Profile Card 4", link: "https://profile-card-4.com" },
-        { title: "Profile Card 5", link: "https://profile-card-5.com" },
-        { title: "Profile Card 6", link: "https://profile-card-6.com" },
+        { title: "P-1", link: "https://profile-card-1.com" },
+        { title: "Pr-2", link: "https://profile-card-2.com" },
+        { title: "Pr-3", link: "https://profile-card-3.com" },
+        { title: "Pr-4", link: "https://profile-card-4.com" },
+        { title: "Pr-5", link: "https://profile-card-5.com" },
+        { title: "Pr-6", link: "https://profile-card-6.com" },
     ];
 
     const settingsCards = [
-        { title: "Settings Card 1", link: "https://settings-card-1.com" },
-        { title: "Settings Card 2", link: "https://settings-card-2.com" },
-        { title: "Settings Card 3", link: "https://settings-card-3.com" },
-        { title: "Settings Card 4", link: "https://settings-card-4.com" },
-        { title: "Settings Card 5", link: "https://settings-card-5.com" },
-        { title: "Settings Card 6", link: "https://settings-card-6.com" },
+        { title: "Set-1", link: "https://settings-card-1.com" },
+        { title: "St-2", link: "https://settings-card-2.com" },
+        { title: "Se-3", link: "https://settings-card-3.com" },
+        { title: "S-4", link: "https://settings-card-4.com" },
+        { title: "E-5", link: "https://settings-card-5.com" },
+        { title: "T-6", link: "https://settings-card-6.com" },
     ];
 
     const logoutCards = [
-        { title: "Logout Card 1", link: "https://logout-card-1.com" },
-        { title: "Logout Card 2", link: "https://logout-card-2.com" },
-        { title: "Logout Card 3", link: "https://logout-card-3.com" },
-        { title: "Logout Card 4", link: "https://logout-card-4.com" },
-        { title: "Logout Card 5", link: "https://logout-card-5.com" },
-        { title: "Logout Card 6", link: "https://logout-card-6.com" },
+        { title: "L-1", link: "https://logout-card-1.com" },
+        { title: "Gl-2", link: "https://logout-card-2.com" },
+        { title: "G-3", link: "https://logout-card-3.com" },
+        { title: "Lo-4", link: "https://logout-card-4.com" },
+        { title: "Lg-5", link: "https://logout-card-5.com" },
+        { title: "Log-6", link: "https://logout-card-6.com" },
     ];
 
     const cardData = [
         {
-            category: "Dashboard",
+            category: "Option 1",
             cards: dashboardCards,
         },
         {
-            category: "Profile",
+            category: "Option 2",
             cards: profileCards,
         },
         {
-            category: "Settings",
+            category: "Option 3",
             cards: settingsCards,
         },
         {
-            category: "Logout",
+            category: "Option 4",
             cards: logoutCards,
         },
     ];
@@ -174,62 +174,62 @@ const Dashboard = ({ activeLink, setActiveLink }) => {
     });
 
     return (
-        <div className="flex flex-1 justify-center items-center">
-            <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
-                <div className="flex-row flex">
-                    <Input
-                        classNames={{
-                            base: "max-w-full sm:max-w-[10rem] h-10",
-                            mainWrapper: "h-full",
-                            input: "text-small",
-                            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-                        }}
-                        placeholder="Type to search..."
-                        size="sm"
-                        startContent={<SearchIcon size={18} />}
-                        type="search"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    <DropdownMenu>
-                        <DropdownMenuTrigger className="bg-blue-300 py-2 px-2 rounded-lg">Categories Dropdown</DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            <DropdownMenuItem onClick={() => setActiveLink("Dashboard")}>Dashboard</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setActiveLink("Profile")}>Profile</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setActiveLink("Settings")}>Settings</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setActiveLink("Logout")}>Logout</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-                {filteredCards.map((category) => (
-                    activeLink === category.category && (
-                        <div className="flex flex-wrap md:flex-row flex-col items-center justify-center gap-16" key={category.category}>
-                            {category.cards.map((card, i) => (
-                                <Card
-                                    key={`${category.category.toLowerCase()}-card${i}`}
-                                    isFooterBlurred
-                                    radius="lg"
-                                    className="border-none flex flex-col justify-center py-12 px-4 items-center rounded-lg bg-slate-900 w-[370px] h-[300px]"
-                                >
-                                    <Image
-                                        alt="Card Image"
-                                        className="object-cover rounded-lg"
-                                        height={200}
-                                        src="https://nextui.org/images/hero-card.jpeg"
-                                        width={200}
-                                    />
-                                    <CardFooter className="justify-center gap-3 before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small z-10">
-                                        <p className="text-tiny text-white/80">{card.title}</p>
-                                        <Button href={card.link} className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
-                                            Click here
-                                        </Button>
-                                    </CardFooter>
-                                </Card>
-                            ))}
-                        </div>
-                    )
-                ))}
-            </div>
+<div className="flex flex-1 justify-center items-center">
+    <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
+        <div className="flex justify-between items-center">
+            <Input
+                classNames={{
+                    base: "max-w-full sm:max-w-[10rem] h-10",
+                    mainWrapper: "h-full",
+                    input: "text-small",
+                    inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                }}
+                placeholder="Type to search..."
+                size="sm"
+                startContent={<SearchIcon size={18} />}
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <DropdownMenu>
+                <DropdownMenuTrigger className="bg-blue-300 py-2 px-2 rounded-lg">Categories Dropdown</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuItem onClick={() => setActiveLink("Option 1")}>Option-1</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setActiveLink("Option 2")}>Option-2</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setActiveLink("Option 3")}>Option-3</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setActiveLink("Option 4")}>Option-4</DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
         </div>
+        {filteredCards.map((category) => (
+            activeLink === category.category && (
+                <div className="flex flex-wrap md:flex-row flex-col items-center justify-center gap-16" key={category.category}>
+                    {category.cards.map((card, i) => (
+                        <Card
+                            key={`${category.category.toLowerCase()}-card${i}`}
+                            isFooterBlurred
+                            radius="lg"
+                            className="border-none flex flex-col justify-center py-12 px-4 text-black dark:text-white items-center rounded-lg bg-slate-500 dark:bg-slate-900 w-[370px] h-[300px]"
+                        >
+                            <Image
+                                alt="Card Image"
+                                className="object-cover rounded-lg"
+                                height={200}
+                                src="https://nextui.org/images/hero-card.jpeg"
+                                width={200}
+                            />
+                            <CardFooter className="justify-center gap-3 before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small z-10">
+                                <p className="text-tiny text-white/80">{card.title}</p>
+                                <Button href={card.link} className="text-tiny rounded-lg py-1 text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
+                                    Click here
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            )
+        ))}
+    </div>
+</div>
     );
 };
