@@ -19,8 +19,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SearchIcon } from "./ui/search-icon";
 import { Input } from "@nextui-org/react";
-
+interface DashboardProps {
+    activeLink: string;
+    setActiveLink: (link: string) => void;
+}
 export function SidebarDemo() {
+    
     const links = [
         {
             label: "Option 1",
@@ -55,7 +59,7 @@ export function SidebarDemo() {
     const [activeLink, setActiveLink] = useState("Dashboard");
     const [open, setOpen] = useState(false);
 
-    const handleLinkClick = (label) => {
+    const handleLinkClick = (label: string) => {
         setActiveLink(label);
     };
 
@@ -106,7 +110,7 @@ export function SidebarDemo() {
     );
 }
 
-const Dashboard = ({ activeLink, setActiveLink }) => {
+const Dashboard: React.FC<DashboardProps> = ({ activeLink, setActiveLink }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const dashboardCards = [
@@ -186,7 +190,7 @@ const Dashboard = ({ activeLink, setActiveLink }) => {
                 }}
                 placeholder="Type to search..."
                 size="sm"
-                startContent={<SearchIcon size={18} />}
+                startContent={<SearchIcon size={18} width={18} height={18} />}
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
