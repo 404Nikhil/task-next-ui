@@ -154,14 +154,15 @@ export const MobileSidebar = ({
     </>
   );
 };
-
 export const SidebarLink = ({
   link,
   className,
+  onClick, // Add the onClick prop here
   ...props
 }: {
   link: Links;
   className?: string;
+  onClick?: () => void; // Include the onClick prop type
   props?: LinkProps;
 }) => {
   const { open, animate } = useSidebar();
