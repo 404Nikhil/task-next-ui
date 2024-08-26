@@ -10,7 +10,14 @@ import {
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
-import {Card, CardFooter, Button} from "@nextui-org/react";
+import { Card, CardFooter, Button } from "@nextui-org/react";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 export function SidebarDemo() {
     const links = [
         {
@@ -92,11 +99,12 @@ export function SidebarDemo() {
                     </div>
                 </SidebarBody>
             </Sidebar>
-            <Dashboard activeLink={activeLink} />
+            <Dashboard activeLink={activeLink} setActiveLink={setActiveLink} />
         </div>
     );
 }
-const Dashboard = ({ activeLink }: { activeLink: string }) => {
+
+const Dashboard = ({ activeLink, setActiveLink }) => {
     const dashboardCards = [
         { title: "Dashboard Card 1", link: "https://dashboard-card-1.com" },
         { title: "Dashboard Card 2", link: "https://dashboard-card-2.com" },
@@ -151,38 +159,50 @@ const Dashboard = ({ activeLink }: { activeLink: string }) => {
             cards: logoutCards,
         },
     ];
+
     return (
         <div className="flex flex-1 justify-center items-center">
-        <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
-            {cardData.map((category) => (
-                activeLink === category.category && (
-                    <div className="flex flex-wrap md:flex-row flex-col  items-center justify-center gap-16" key={category.category}>
-                        {category.cards.map((card, i) => (
-                            <Card
-                                key={`${category.category.toLowerCase()}-card${i}`}
-                                isFooterBlurred
-                                radius="lg"
-                                className="border-none flex flex-col justify-center py-12 px-4 items-center rounded-lg bg-red-500  w-[370px] h-[300px]"
-                            >
-                                <Image
-                                    alt="Card Image"
-                                    className="object-cover rounded-lg"
-                                    height={200}
-                                    src="https://nextui.org/images/hero-card.jpeg"
-                                    width={200}
-                                />
-                                <CardFooter className="justify-center gap-3 before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small  z-10">
-                                    <p className="text-tiny text-white/80">{card.title}</p>
-                                    <Button href={card.link} className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
-                                        Click here
-                                    </Button>
-                                </CardFooter>
-                            </Card>
-                        ))}
-                    </div>
-                )
-            ))}
+            <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
+                <div>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>Categories Dropdown</DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuItem onClick={() => setActiveLink("Dashboard")}>Dashboard</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setActiveLink("Profile")}>Profile</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setActiveLink("Settings")}>Settings</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setActiveLink("Logout")}>Logout</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+                {cardData.map((category) => (
+                    activeLink === category.category && (
+                        <div className="flex flex-wrap md:flex-row flex-col items-center justify-center gap-16" key={category.category}>
+                            {category.cards.map((card, i) => (
+                                <Card
+                                    key={`${category.category.toLowerCase()}-card${i}`}
+                                    isFooterBlurred
+                                    radius="lg"
+                                    className="border-none flex flex-col justify-center py-12 px-4 items-center rounded-lg bg-slate-900 w-[370px] h-[300px]"
+                                >
+                                    <Image
+                                        alt="Card Image"
+                                        className="object-cover rounded-lg"
+                                        height={200}
+                                        src="https://nextui.org/images/hero-card.jpeg"
+                                        width={200}
+                                    />
+                                    <CardFooter className="justify-center gap-3 before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small z-10">
+                                        <p className="text-tiny text-white/80">{card.title}</p>
+                                        <Button href={card.link} className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
+                                            Click here
+                                        </Button>
+                                    </CardFooter>
+                                </Card>
+                            ))}
+                        </div>
+                    )
+                ))}
+            </div>
         </div>
-    </div>
     );
 };
