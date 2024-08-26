@@ -19,12 +19,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SearchIcon } from "./ui/search-icon";
 import { Input } from "@nextui-org/react";
+
 interface DashboardProps {
     activeLink: string;
     setActiveLink: (link: string) => void;
 }
+
 export function SidebarDemo() {
-    
     const links = [
         {
             label: "Option 1",
@@ -56,7 +57,7 @@ export function SidebarDemo() {
         },
     ];
 
-    const [activeLink, setActiveLink] = useState("Dashboard");
+    const [activeLink, setActiveLink] = useState("Option 1"); 
     const [open, setOpen] = useState(false);
 
     const handleLinkClick = (label: string) => {
@@ -178,62 +179,62 @@ const Dashboard: React.FC<DashboardProps> = ({ activeLink, setActiveLink }) => {
     });
 
     return (
-<div className="flex flex-1 justify-center items-center">
-    <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
-        <div className="flex justify-between items-center">
-            <Input
-                classNames={{
-                    base: "max-w-full sm:max-w-[10rem] h-10",
-                    mainWrapper: "h-full",
-                    input: "text-small",
-                    inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-                }}
-                placeholder="Type to search..."
-                size="sm"
-                startContent={<SearchIcon size={18} width={18} height={18} />}
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <DropdownMenu>
-                <DropdownMenuTrigger className="bg-blue-300 py-2 px-2 rounded-lg">Categories Dropdown</DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuItem onClick={() => setActiveLink("Option 1")}>Option-1</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setActiveLink("Option 2")}>Option-2</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setActiveLink("Option 3")}>Option-3</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setActiveLink("Option 4")}>Option-4</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
-        {filteredCards.map((category) => (
-            activeLink === category.category && (
-                <div className="flex flex-wrap md:flex-row flex-col items-center justify-center gap-16" key={category.category}>
-                    {category.cards.map((card, i) => (
-                        <Card
-                            key={`${category.category.toLowerCase()}-card${i}`}
-                            isFooterBlurred
-                            radius="lg"
-                            className="border-none flex flex-col justify-center py-12 px-4 text-black dark:text-white items-center rounded-lg bg-slate-500 dark:bg-slate-900 w-[370px] h-[300px]"
-                        >
-                            <Image
-                                alt="Card Image"
-                                className="object-cover rounded-lg"
-                                height={200}
-                                src="https://nextui.org/images/hero-card.jpeg"
-                                width={200}
-                            />
-                            <CardFooter className="justify-center gap-3 before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small z-10">
-                                <p className="text-tiny text-white/80">{card.title}</p>
-                                <Button href={card.link} className="text-tiny rounded-lg py-1 text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
-                                    Click here
-                                </Button>
-                            </CardFooter>
-                        </Card>
-                    ))}
+        <div className="flex flex-1 justify-center items-center">
+            <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
+                <div className="flex justify-between items-center">
+                    <Input
+                        classNames={{
+                            base: "max-w-full sm:max-w-[10rem] h-10",
+                            mainWrapper: "h-full",
+                            input: "text-small",
+                            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                        }}
+                        placeholder="Type to search..."
+                        size="sm"
+                        startContent={<SearchIcon size={18} width={18} height={18} />}
+                        type="search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <DropdownMenu>
+                        <DropdownMenuTrigger className="bg-blue-300 py-2 px-2 rounded-lg">Categories Dropdown</DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuItem onClick={() => setActiveLink("Option 1")}>Option 1</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setActiveLink("Option 2")}>Option 2</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setActiveLink("Option 3")}>Option 3</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setActiveLink("Option 4")}>Option 4</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
-            )
-        ))}
-    </div>
-</div>
+                {filteredCards.map((category) => (
+                    activeLink === category.category && (
+                        <div className="flex flex-wrap md:flex-row flex-col items-center justify-center gap-16" key={category.category}>
+                            {category.cards.map((card, i) => (
+                                <Card
+                                    key={`${category.category.toLowerCase()}-card${i}`}
+                                    isFooterBlurred
+                                    radius="lg"
+                                    className="border-none flex flex-col justify-center py-12 px-4 text-black dark:text-white items-center rounded-lg bg-slate-500 dark:bg-slate-900 w-[370px] h-[300px]"
+                                >
+                                    <Image
+                                        alt="Card Image"
+                                        className="object-cover rounded-lg"
+                                        height={200}
+                                        src="https://nextui.org/images/hero-card.jpeg"
+                                        width={200}
+                                    />
+                                    <CardFooter className="justify-center gap-3 before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small z-10">
+                                        <p className="text-tiny text-white/80">{card.title}</p>
+                                        <Button href={card.link} className="text-tiny rounded-lg py-1 text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
+                                            Click here
+                                        </Button>
+                                    </CardFooter>
+                                </Card>
+                            ))}
+                        </div>
+                    )
+                ))}
+            </div>
+        </div>
     );
 };
